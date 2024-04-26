@@ -1,0 +1,18 @@
+# Ignore Composer's downloaded packages
+/vendor/
+
+# Ignore Twig's cache
+/templates_c/
+
+# Ignore environment variables
+.env
+
+# Ignore IDE specific files
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
