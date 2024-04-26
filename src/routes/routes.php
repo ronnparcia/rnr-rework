@@ -27,7 +27,7 @@ $app->get('/', function ($request, $response, $args) {
  * @param array $args The route parameters.
  * @return object The rendered view with the retrieved posts.
  */
-$app->get('/{category:films|shows|music|others}[/{page}]', 
+$app->get('/{category:films|shows|music|others}[/{page}[/]]', 
     function ($request, $response, $args) {
         $category = $args['category']; // Get the category
         $page = isset($args['page']) ? (int)$args['page'] : 1; // If page is not set, default to 1, else convert to integer
