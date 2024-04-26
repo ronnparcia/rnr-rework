@@ -9,4 +9,14 @@
     {% for post in data %}
         <p>{{ post["title"]["rendered"] }}</p>
     {% endfor %}
+
+    <div>
+        Page {{ page }} of {{ pageCount }}
+        {% if page > 1 %}
+            <a href="{{ path_for('category', { 'category': category, 'page': page - 1 }) }}">Previous</a>
+        {% endif %}
+        {% if page < pageCount %}
+            <a href="{{ path_for('category', { 'category': category, 'page': page + 1 }) }}">Next</a>
+        {% endif %}
+    </div>
 {% endblock %}
