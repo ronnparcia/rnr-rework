@@ -29,6 +29,13 @@ $container['environment'] = function () {
     return new Slim\Http\Environment($_SERVER);
 };
 
+// Set-up 404 page
+$container['notFoundHandler'] = function ($container) {
+    return function ($request, $response) use ($container) {
+        return $container['view']->render($response->withStatus(404), 'pages/404.twig');
+    };
+};
+
 // Create Slim app
 $app = new \Slim\App($container);
 
