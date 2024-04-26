@@ -20,7 +20,10 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 /**
- * Route for retrieving posts based on category and page number.
+ * Route for retrieving posts based on category and page number. The category can be
+ * can be 'films', 'shows', 'music', or 'others'. The page number is optional. An additional
+ * optional trailing slash is added to prevent 404 errors when a trailing slash is added
+ * to the URL.
  *
  * @param object $request The HTTP request object.
  * @param object $response The HTTP response object.
