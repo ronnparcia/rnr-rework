@@ -12,10 +12,10 @@
  * @return The rendered view.
  */
 $app->get('/', function ($request, $response, $args) {
-    $data = getPosts();
+    $posts = getPosts();
 
     return $this->view->render($response, 'pages/home.twig', [
-        'data' => $data
+        'posts' => $posts
     ]);
 });
 
@@ -46,11 +46,11 @@ $app->get('/{category:films|shows|music|others}[/{page}[/]]',
         $tag = $tagMap[$category]; // Get the tag ID based on the category
         $perPage = 20; // Number of posts to retrieve per page
 
-        $data = getPosts($tag, $perPage, $page); // Get the posts
+        $posts = getPosts($tag, $perPage, $page); // Get the posts
         $pageCount = getPageCount($tag, $perPage); // Get the total number of pages
 
         return $this->view->render($response, 'pages/category.twig', [
-            'data' => $data,
+            'posts' => $posts,
             'page' => $page,
             'pageCount' => $pageCount,
             'category' => $category

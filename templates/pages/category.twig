@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>{{ category|capitalize }}</h1>
-    {% for post in data %}
+    {% for post in posts %}
         <p>{{ post["title"]["rendered"] }}</p>
     {% endfor %}
 
