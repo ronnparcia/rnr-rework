@@ -52,4 +52,4 @@ $app->get('/{category:films|shows|music|others}[/{page}]',
             'pageCount' => $pageCount,
             'category' => $category
         ]);
-});
+})->setName('category');
