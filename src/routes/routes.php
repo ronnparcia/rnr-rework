@@ -44,9 +44,12 @@ $app->get('/{category:films|shows|music|others}[/{page}]',
         $perPage = 20; // Number of posts to retrieve per page
 
         $data = getPosts($tag, $perPage, $page); // Get the posts
+        $pageCount = getPageCount($tag, $perPage); // Get the total number of pages
 
         return $this->view->render($response, 'pages/category.twig', [
             'data' => $data,
-            'pageName' => ucwords($category), // Capitalize the category name (e.g. 'films' to 'Films')
+            'page' => $page,
+            'pageCount' => $pageCount,
+            'category' => $category
         ]);
 });
