@@ -37,3 +37,14 @@ function getPosts($tag = 497, $perPage = 10, $page = 1, $httpReq = 'GET') {
     // Return the response in array format
     return json_decode($response, true);
 }
+
+function getPageCount($tag, $perPage = 10) {
+    $domain = "https://thelasallian.com";
+    $url = "$domain/wp-json/wp/v2/posts?tags=$tag&per_page=$perPage";
+
+    // Get the headers
+    $headers = get_headers($url, true); // true parameter to get associative array
+    $pageCount = $headers["X-WP-TotalPages"];
+
+    return $pageCount;
+}
