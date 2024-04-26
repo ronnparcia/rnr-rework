@@ -38,6 +38,13 @@ function getPosts($tag = 497, $perPage = 10, $page = 1, $httpReq = 'GET') {
     return json_decode($response, true);
 }
 
+/**
+ * Get the total number of pages for a specific tag using the WordPress REST API Headers
+ *
+ * @param  string $tag The tag to filter the posts by.
+ * @param  int    $perPage The number of posts to display per page. Default is 10.
+ * @return int    The total number of pages.
+ */
 function getPageCount($tag, $perPage = 10) {
     $domain = "https://thelasallian.com";
     $url = "$domain/wp-json/wp/v2/posts?tags=$tag&per_page=$perPage";
