@@ -1,0 +1,20 @@
+{
+    "name": "ronnparcia/rnr-rework",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ronnparcia\\RnrRework\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronn Parcia",
+            "email": "ronn_parcia@dlsu.edu.ph"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/twig-view": "^2.5",
+        "symfony/deprecation-contracts": "3.0.2"
+    }
+}
