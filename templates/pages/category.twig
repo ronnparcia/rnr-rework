@@ -1,11 +1,11 @@
 {% extends "base.twig" %}
 
 {% block title %}
-    {{ pageName }} - Rant and Rave
+    {{ category|capitalize }} - Rant and Rave
 {% endblock %}
 
 {% block content %}
-    <h1>{{ pageName }}</h1>
+    <h1>{{ category|capitalize }}</h1>
     {% for post in data %}
         <p>{{ post["title"]["rendered"] }}</p>
     {% endfor %}
