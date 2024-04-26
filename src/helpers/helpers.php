@@ -1,13 +1,22 @@
 <?php
 
 /**
- * Sends an HTTP request to the specified URL and retrieves the response.
+ * Retrieves posts from the WordPress REST API based on the specified parameters.
  *
- * @param string $url The URL to send the request to.
- * @param string $httpReq The HTTP request method (default: 'GET').
- * @return array|null The response data as an associative array, or null if an error occurred.
+ * @param int    $tag      The tag ID to filter the posts by. Default is 497 ('Rant and Rave').
+ * @param int    $perPage  The number of posts to retrieve per page. Default is 10.
+ * @param int    $page     The page number of the posts to retrieve. Default is 1.
+ * @param string $httpReq  The HTTP request method to use. Default is 'GET'.
+ *
+ * @return array|false     Returns an array of posts if successful, or false on failure.
  */
-function getPosts($url, $httpReq = 'GET') {
+function getPosts($tag = 497, $perPage = 10, $page = 1, $httpReq = 'GET') {
+    // Build the WordPress REST API URL
+    $fields = "title,link,jetpack_featured_media_url,date,tags,excerpt,content,authors";
+    $domain = "https://thelasallian.com";
+    $url = "$domain/wp-json/wp/v2/posts?_fields=$fields&tags=$tag&per_page=$perPage&page=$page";
+
+    // Make the request
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -24,5 +33,7 @@ function getPosts($url, $httpReq = 'GET') {
     $response = curl_exec($curl);
 
     curl_close($curl);
+
+    // Return the response in array format
     return json_decode($response, true);
 }
