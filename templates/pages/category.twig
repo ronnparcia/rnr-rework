@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ pageName }} - Rant and Rave
+{% endblock %}
+
+{% block content %}
+    <h1>{{ pageName }}</h1>
+    {% for post in data %}
+        <p>{{ post["title"]["rendered"] }}</p>
+    {% endfor %}
+{% endblock %}

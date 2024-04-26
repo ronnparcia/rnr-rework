@@ -3,7 +3,7 @@
 $app->get('/', function ($request, $response, $args) {
     $data = getPosts();
 
-    return $this->view->render($response, 'home.twig', [
+    return $this->view->render($response, 'pages/home.twig', [
         'data' => $data
     ]);
 });
@@ -26,7 +26,8 @@ $app->get('/{category:films|shows|music|others}[/{page}]',
 
         $data = getPosts($tag, $perPage, $page); // Get the posts
 
-        return $this->view->render($response, 'home.twig', [
-            'data' => $data
+        return $this->view->render($response, 'pages/category.twig', [
+            'data' => $data,
+            'pageName' => ucwords($category), // Capitalize the category name (e.g. 'films' to 'Films')
         ]);
 });
