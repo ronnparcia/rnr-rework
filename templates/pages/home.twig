@@ -14,8 +14,27 @@
 {% block content %}
     <h1>Home</h1>
 
-    {# Loop through the posts and display their titles #}
-    {% for post in posts %}
-        <p>{{ post["title"]["rendered"] }}</p>
+    {# Latest Rant and Rave Articles #}
+    <h2>Latest</h2>
+    <ul>
+        {# Loop through the posts and display their titles #}
+        {% for post in latestPosts %}
+            <li>{{ post["title"]["rendered"] }}</li>
+        {% endfor %}
+    </ul>
+
+    {# Articles per Category #}
+    {% for category, posts in categoryPosts %}
+        {# Capitalize the category name's first letter #}
+        <h2>{{ category|capitalize }}</h2>
+        <ul>
+            {# Loop through the posts and display their titles #}
+            {% for post in posts %}
+                <li>{{ post["title"]["rendered"] }}</li>
+            {% endfor %}
+        </ul>
+
+        {# Display a link to the category page #}
+        <a href="{{ path_for('category', { 'category': category }) }}">More</a>
     {% endfor %}
 {% endblock %}
