@@ -41,12 +41,7 @@ $app->get('/{category:films|shows|music|others}[/{page}[/]]',
         $page = isset($args['page']) ? (int)$args['page'] : 1; // If page is not set, default to 1, else convert to integer
 
         // Map category to tag ID
-        $tagMap = [
-            'films'  => 2147,
-            'shows'  => 2225,
-            'music'  => 2107,
-            'others' => 2226,
-        ];
+        $tagMap = require '../config/categories.php';
 
         $tag = $tagMap[$category]; // Get the tag ID based on the category
         $perPage = 20; // Number of posts to retrieve per page
