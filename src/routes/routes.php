@@ -6,10 +6,10 @@
  * This route handles the GET request for the home page. It retrieves the posts data using the `getPosts()` function
  * and renders the 'pages/home.twig' template with the retrieved data.
  *
- * @param $request The HTTP request object.
- * @param $response The HTTP response object.
- * @param $args The route arguments.
- * @return The rendered view.
+ * @param  object $request  The HTTP request object.
+ * @param  object $response The HTTP response object.
+ * @param  array  $args     The route arguments.
+ * @return object The rendered view with the retrieved posts
  */
 $app->get('/', function ($request, $response, $args) {
     $posts = getPosts();
@@ -20,14 +20,19 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 /**
- * Route for retrieving posts based on category and page number. The category can be
- * can be 'films', 'shows', 'music', or 'others'. The page number is optional. An additional
- * optional trailing slash is added to prevent 404 errors when a trailing slash is added
- * to the URL.
- *
- * @param object $request The HTTP request object.
- * @param object $response The HTTP response object.
- * @param array $args The route parameters.
+ * Route for retrieving posts based on category and page number. 
+ * 
+ * This route handles the GET request for category pages, such as '/films', '/shows', '/music', 
+ * or '/others'. It retrieves the posts data using the `getPosts()` function based on the given
+ * category parameter and optional page number, and renders the 'pages/category.twig' template with
+ * the retrieved data. The template also receives the current page number, total page count, and
+ * the category name.
+ * 
+ * An optional trailing slash is added to prevent 404 errors when a trailing slash is added to the URL.
+ * 
+ * @param  object $request The HTTP request object.
+ * @param  object $response The HTTP response object.
+ * @param  array  $args The route parameters.
  * @return object The rendered view with the retrieved posts.
  */
 $app->get('/{category:films|shows|music|others}[/{page}[/]]', 
