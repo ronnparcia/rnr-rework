@@ -29,5 +29,6 @@
                 <li>{{ post["title"]["rendered"] }}</li>
             {% endfor %}
         </ul>
+        <a href="{{ path_for('category', { 'category': category }) }}">More</a>
     {% endfor %}
 {% endblock %}
