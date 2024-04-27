@@ -12,10 +12,22 @@
  * @return object The rendered view with the retrieved posts
  */
 $app->get('/', function ($request, $response, $args) {
-    $posts = getPosts();
+    $categories = require '../config/categories.php'; // Get the categories tag map
+    
+    $latestPosts = getPosts(497, 5); // Get the latest posts
+    $categoryPosts = []; // Initialize an empty array for the posts
 
+    // Loop through each category and get their posts
+    foreach ($categories as $category => $tag) {
+        // If the category is 'Rant and Rave', get 5 posts per page, else get 4 posts per page
+        $perPage = $category === 'Rant and Rave' ? 5 : 4; 
+        $categoryPosts[$category] = getPosts($tag, $perPage); // Get the posts based on the category
+    }
+
+    // Render the home page with the retrieved posts
     return $this->view->render($response, 'pages/home.twig', [
-        'posts' => $posts
+        'latestPosts' => $latestPosts,
+        'categoryPosts' => $categoryPosts
     ]);
 });
 

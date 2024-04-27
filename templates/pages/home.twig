@@ -14,8 +14,20 @@
 {% block content %}
     <h1>Home</h1>
 
+    <h2>Latest</h2>
     {# Loop through the posts and display their titles #}
-    {% for post in posts %}
-        <p>{{ post["title"]["rendered"] }}</p>
+    <ul>
+        {% for post in latestPosts %}
+            <li>{{ post["title"]["rendered"] }}</li>
+        {% endfor %}
+    </ul>
+
+    {% for category, posts in categoryPosts %}
+        <h2>{{ category|capitalize }}</h2>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post["title"]["rendered"] }}</li>
+            {% endfor %}
+        </ul>
     {% endfor %}
 {% endblock %}
