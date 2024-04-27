@@ -1,0 +1,21 @@
+{##
+ #  @file home.twig
+ #  @desc This is the template file for the home page of the Rant and Rave website. 
+ #        It displays a list of posts.
+ #}
+
+{# Extend the base template #}
+{% extends "base.twig" %}
+
+{# Set the title of the page #}
+{% block title %}Home{% endblock %}
+
+{# Set the content of the page #}
+{% block content %}
+    <h1>Home</h1>
+
+    {# Loop through the posts and display their titles #}
+    {% for post in posts %}
+        <p>{{ post["title"]["rendered"] }}</p>
+    {% endfor %}
+{% endblock %}

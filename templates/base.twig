@@ -1,0 +1,22 @@
+{##
+ #  @file base.twig
+ #  @desc This is the base template file for the Rant and Rave website. It defines the basic 
+ #  structure of the HTML document and provides blocks for the title and content.
+ #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {# This block allows child templates to override the title of the page #}
+        {% block title %}Rant and Rave - The LaSallian{% endblock %}
+    </title>
+</head>
+<body>
+    {# This block allows child templates to override the content of the page #}
+    {% block content %}{% endblock %}
+</body>
+</html>
