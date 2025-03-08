@@ -68,3 +68,17 @@ $app->get('/{category:films|shows|music|others}[/{page}[/]]',
             'category' => $category
         ]);
 })->setName('category');
+
+// Slug
+$app->get('/post/{slug}[/]', function ($request, $response, $args) {
+    $slug = $args['slug']; // Get the post slug
+
+    // Get the post based on the slug
+    $post = getSinglePost($slug);
+
+    // Render the post page with the retrieved post
+    return $this->view->render($response, 'pages/article.twig', [
+        'post' => $post[0],
+        'slug' => $slug
+    ]);
+})->setName('post');

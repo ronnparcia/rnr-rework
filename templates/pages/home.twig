@@ -30,7 +30,9 @@
         <ul>
             {# Loop through the posts and display their titles #}
             {% for post in posts %}
-                <li>{{ post["title"]["rendered"] }}</li>
+                <a href="{{ path_for('post', { 'slug': post['slug'] }) }}">
+                    <li>{{ post["title"]["rendered"] }}</li>
+                </a>
             {% endfor %}
         </ul>
 

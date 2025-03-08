@@ -11,7 +11,8 @@ $container = new \Slim\Container();
 // Set-up view rendering with Twig
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig('../templates', [
-        'cache' => false // You can set to 'false' in development mode
+        'cache' => false, // You can set to 'false' in development mode
+        'debug' => true 
     ]);
 
     // Instantiate and add Slim specific extension

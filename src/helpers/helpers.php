@@ -12,7 +12,7 @@
  */
 function getPosts($tag = 497, $perPage = 10, $page = 1, $httpReq = 'GET') {
     // Build the WordPress REST API URL
-    $fields = "title,link,jetpack_featured_media_url,date,tags,excerpt,content,authors";
+    $fields = "title,link,jetpack_featured_media_url,date,tags,excerpt,content,authors,slug";
     $domain = "https://thelasallian.com";
     $url = "$domain/wp-json/wp/v2/posts?_fields=$fields&tags=$tag&per_page=$perPage&page=$page";
 
@@ -54,4 +54,30 @@ function getPageCount($tag, $perPage = 10) {
     $pageCount = $headers["X-WP-TotalPages"];
 
     return $pageCount;
+}
+
+function getSinglePost($slug, $httpReq = 'GET') {
+    $domain = "https://thelasallian.com";
+    $url = "$domain/wp-json/wp/v2/posts?slug=$slug";
+
+    // Make the request
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => $httpReq,
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    // Return the response in array format
+    return json_decode($response, true);
 }
